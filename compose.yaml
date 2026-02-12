@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_data:/var/www/html
+
+  ftp:
+    image: delfer/alpine-ftp-server
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    environment:
+      USERS: myuser|mypass|/home/myuser/wordpress/|1000
+      ADDRESS: localhost
+      MIN_PORT: 21100
+      MAX_PORT: 21110
+    volumes:
+      - wp_data:/home/myuser/wordpress
+
+volumes:
+  db_data:
+  wp_data:
