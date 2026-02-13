@@ -46,7 +46,7 @@ docker compose ps
 ### 参考資料
 
 - [wordpress - Official Image | Docker Hub](https://hub.docker.com/_/wordpress)
-- [delfer/docker-alpine-ftp-server](https://github.com/delfer/docker-alpine-ftp-server)
+- [delfer/docker-alpine-ftp-server | GitHub](https://github.com/delfer/docker-alpine-ftp-server)
 
 ## 2. 検証手順
 
