@@ -50,7 +50,7 @@ docker compose ps
 
 ## 2. 検証手順
 
-### 2.1 Unity Editor でゲームを WebGL ビルドする
+### ① Unity Editor でゲームを WebGL ビルドする
 
 > Unity には、サーバーの設定方法に影響する主な設定が 2 つあります。
 >
@@ -69,7 +69,7 @@ docker compose ps
 - Compression Format: gzip
 - Decompression Fallback: ON
 
-### 2.2 サーバーにビルドファイルを FTP でアップロードする
+### ② サーバーにビルドファイルを FTP でアップロードする
 
 Filezilla Client で「ファイル > サイトマネージャー」から次のように設定する。
 
@@ -83,7 +83,7 @@ Filezilla Client で「ファイル > サイトマネージャー」から次の
 - 転送設定タブ
   - 転送モード: パッシブ
 
-### 2.3 ブログのページにアップロードしたビルドファイルを埋め込む
+### ③ ブログのページにアップロードしたビルドファイルを埋め込む
 
 カスタム HTML ブロックを使って、ビルドファイルの `index.html` を iframe 要素に埋め込む。スタイルの調整は必要。
 
