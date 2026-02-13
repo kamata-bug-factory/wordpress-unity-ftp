@@ -50,4 +50,46 @@ docker compose ps
 
 ## 2. 検証手順
 
-WIP
+### 2.1 Unity Editor でゲームを WebGL ビルドする
+
+> Unity には、サーバーの設定方法に影響する主な設定が 2 つあります。
+>
+> - **Compression Format**: ビルドステップで Unity がどのようにファイルを圧縮するかを決定します。
+> - **Decompression Fallback**: ビルドがブラウザーで実行されるときに、ダウンロードしたファイルを Unity がどのように処理するかを決定します。
+>
+> (参照: [WebGL アプリケーションのデプロイ | Unity Documentation](https://docs.unity3d.com/ja/2022.3/Manual/webgl-deploying.html) )
+
+検証段階では以下の設定でよい。
+
+- Compression Format: Disabled
+- Decompression Fallback: OFF
+
+本番環境でパフォーマンスを考慮する場合、以下の設定にするとよい（と思う）。
+
+- Compression Format: gzip
+- Decompression Fallback: ON
+
+### 2.2 サーバーにビルドファイルを FTP でアップロードする
+
+Filezilla Client で「ファイル > サイトマネージャー」から次のように設定する。
+
+- 一般タブ
+  - ホスト: localhost
+  - ポート: 21
+  - プロトコル: FTP
+  - 暗号化: 使用可能なら FTP over TLS を使用
+  - ユーザー: myuser
+  - パスワード: mypass
+- 転送設定タブ
+  - 転送モード: パッシブ
+
+### 2.3 ブログのページにアップロードしたビルドファイルを埋め込む
+
+カスタム HTML ブロックを使って、ビルドファイルの `index.html` を iframe 要素に埋め込む。スタイルの調整は必要。
+
+```html
+<iframe
+  src="/games/watermelon_webgl/index.html"
+  allowfullscreen>
+</iframe>
+```
