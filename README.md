@@ -74,8 +74,8 @@ docker compose ps
 Filezilla Client で「ファイル > サイトマネージャー」から次のように設定する。
 
 - 一般タブ
-  - ホスト: localhost
-  - ポート: 21
+  - ホスト: 127.0.0.1
+  - ポート: 2121
   - プロトコル: FTP
   - 暗号化: 使用可能なら FTP over TLS を使用
   - ユーザー: myuser
